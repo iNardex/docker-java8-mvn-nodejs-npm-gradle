@@ -1,6 +1,6 @@
 FROM buildpack-deps:bionic-scm
 
-RUN apt-get update && apt-get install build-essential bzip2 -y
+RUN apt-get update && apt-get install build-essential -y
 
 ##### https://github.com/docker-library/java/blob/6f340724d3bc1f9b4385975c5de6bfe15aac8c85/openjdk-8-jdk/Dockerfile
 
@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install build-essential bzip2 -y
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
         fontconfig \
+	unzip \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /root/.gradle
 
