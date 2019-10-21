@@ -1,4 +1,4 @@
-FROM buildpack-deps:jessie-scm
+FROM buildpack-deps:bionic-scm
 
 RUN apt-get update && apt-get install build-essential bzip2 -y
 
@@ -12,38 +12,14 @@ RUN apt-get update && apt-get install build-essential bzip2 -y
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
         fontconfig \
-        unzip \
-        wget \
-        bzr \
-        git \
-        openssh-client \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN echo "deb [check-valid-until=no] http://cdn-fastly.deb.debian.org/debian jessie main" > /etc/apt/sources.list.d/jessie.list
-RUN echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list
-RUN apt-get -o Acquire::Check-Valid-Until=false update
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir /root/.gradle
 
 # Default to UTF-8 file.encoding
 ENV LANG C.UTF-8
 
 ENV JAVA_VERSION 8u111
 ENV JAVA_DEBIAN_VERSION 8u111-b14-2~bpo8+1
-
-# see https://bugs.debian.org/775775
-# and https://github.com/docker-library/java/issues/19#issuecomment-70546872
-ENV CA_CERTIFICATES_JAVA_VERSION 20140324
-
-RUN set -x \
-	&& apt-get update \
-	&& apt-get install -y \
-		openjdk-8-jdk="$JAVA_DEBIAN_VERSION" \
-		ca-certificates-java="$CA_CERTIFICATES_JAVA_VERSION" \
-	&& rm -rf /var/lib/apt/lists/*
-
-# see CA_CERTIFICATES_JAVA_VERSION notes above
-RUN /var/lib/dpkg/info/ca-certificates-java.postinst configure
-
-##### https://github.com/carlossg/docker-maven/blob/882a21728d702dad08279afe6b6bf9fa4b8bfe18/jdk-8/Dockerfile
 
 # If you're reading this and have any feedback on how this image could be
 #   improved, please open an issue or a pull request so we can discuss it!
