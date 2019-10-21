@@ -17,9 +17,7 @@ RUN apt-get update \
         bzr \
         git \
         openssh-client \
-    && rm -rf /var/lib/apt/lists/* \
-    && mkdir /home/gradle/.gradle \
-    && ln -s /home/gradle/.gradle /root/.gradle
+    && rm -rf /var/lib/apt/lists/*
 
 RUN echo 'deb http://httpredir.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
 
