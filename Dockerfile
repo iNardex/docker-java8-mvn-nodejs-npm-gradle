@@ -16,10 +16,7 @@ RUN apt-get update \
         wget \
         bzr \
         git \
-        git-lfs \
-        mercurial \
         openssh-client \
-        subversion \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir /home/gradle/.gradle \
     && ln -s /home/gradle/.gradle /root/.gradle
