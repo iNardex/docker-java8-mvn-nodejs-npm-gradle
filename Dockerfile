@@ -22,6 +22,12 @@ ENV LANG C.UTF-8
 ENV JAVA_VERSION 8u111
 ENV JAVA_DEBIAN_VERSION 8u111-b14-2~bpo8+1
 
+RUN set -x \
+	&& apt-get update \
+	&& apt-get install -y \
+		openjdk-8-jdk="$JAVA_DEBIAN_VERSION" \
+	&& rm -rf /var/lib/apt/lists/*
+
 # If you're reading this and have any feedback on how this image could be
 #   improved, please open an issue or a pull request so we can discuss it!
 
