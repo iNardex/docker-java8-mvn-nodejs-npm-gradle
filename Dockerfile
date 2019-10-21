@@ -25,7 +25,7 @@ ENV JAVA_DEBIAN_VERSION 8u111-b14-2~bpo8+1
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
-		openjdk-8-jdk="$JAVA_DEBIAN_VERSION" \
+		openjdk-8-jdk \
 	&& rm -rf /var/lib/apt/lists/*
 
 # If you're reading this and have any feedback on how this image could be
